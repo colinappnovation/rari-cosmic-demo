@@ -10,4 +10,9 @@ export default defineConfig({
       '@': path.resolve(import.meta.dirname, 'src'),
     },
   },
+  server: {
+    headers: {
+      'Cross-Origin-Embedder-Policy': 'credentialless',
+    },
+  },
 })

@@ -17,6 +17,7 @@ export default async function ApodCard() {
         <img
           src={apod.url}
           alt={apod.title}
+
           className="w-full h-full object-cover"
         />
       </div>
