@@ -6,8 +6,8 @@ export default function PlanetsPage(_params: PageProps) {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Planets</h1>
-        <p className="text-gray-500">
+        <h1 className="text-3xl font-bold text-on-surface mb-2">Planets</h1>
+        <p className="text-on-surface-variant">
           All eight planets of our solar system. Search or filter by type.
         </p>
       </div>

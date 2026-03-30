@@ -37,24 +37,26 @@ export default function PlanetGrid({ planets }: { planets: Planet[] }) {
             href={`/planets/${planet.id}`}
             className="group block no-underline"
           >
-            <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm hover:shadow-md hover:border-indigo-300 transition-all">
+            <div className="bg-surface-container-low rounded-sm p-6 ghost-border hover:glow-primary transition-all">
               <div className="flex items-start justify-between mb-3">
                 <div
                   className={`w-12 h-12 rounded-full bg-gradient-to-br ${planet.color} flex items-center justify-center text-white text-xl`}
                 >
                   {planet.emoji}
                 </div>
-                <span className="text-xs font-medium px-2 py-1 rounded-full bg-gray-100 text-gray-600">
+                <span className="text-xs font-medium px-2 py-1 rounded-full bg-surface-container-high text-on-surface-variant"
+                  style={{ fontFamily: 'var(--font-family-label)' }}
+                >
                   {planet.type}
                 </span>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 group-hover:text-indigo-600 transition-colors">
+              <h3 className="text-lg font-semibold text-on-surface group-hover:text-primary transition-colors">
                 {planet.name}
               </h3>
-              <p className="text-sm text-gray-500 mt-1 line-clamp-2">
+              <p className="text-sm text-on-surface-variant mt-1 line-clamp-2">
                 {planet.description}
               </p>
-              <div className="flex gap-4 mt-4 text-xs text-gray-400">
+              <div className="flex gap-4 mt-4 text-xs text-outline" style={{ fontFamily: 'var(--font-family-label)' }}>
                 <span>{planet.diameter}</span>
                 <span>{planet.moons} moon{planet.moons !== 1 ? 's' : ''}</span>
               </div>
@@ -64,7 +66,7 @@ export default function PlanetGrid({ planets }: { planets: Planet[] }) {
       </div>
 
       {filtered.length === 0 && (
-        <div className="text-center py-12 text-gray-400">
+        <div className="text-center py-12 text-outline">
           No planets match your search.
         </div>
       )}

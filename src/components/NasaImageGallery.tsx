@@ -15,7 +15,7 @@ export default function NasaImageGallery({ planetId, title }: Props) {
   return (
     <div>
       {title && (
-        <h2 className="text-lg font-semibold text-gray-900 mb-3">{title}</h2>
+        <h2 className="text-lg font-semibold text-on-surface mb-3">{title}</h2>
       )}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
         {images.map(img => {
@@ -23,7 +23,7 @@ export default function NasaImageGallery({ planetId, title }: Props) {
           return (
             <div
               key={img.nasa_id}
-              className="group relative rounded-lg overflow-hidden bg-gray-100 aspect-square"
+              className="group relative rounded-sm overflow-hidden bg-surface-container-lowest aspect-square"
             >
               <img
                 src={img.localImage}
@@ -41,7 +41,7 @@ export default function NasaImageGallery({ planetId, title }: Props) {
           )
         })}
       </div>
-      <p className="text-xs text-gray-400 mt-2">
+      <p className="text-xs text-outline mt-2" style={{ fontFamily: 'var(--font-family-label)' }}>
         Images from NASA Image and Video Library
       </p>
     </div>

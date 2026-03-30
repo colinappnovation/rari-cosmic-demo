@@ -5,8 +5,8 @@ export default function ApodCard() {
 
   if (!apod || apod.media_type !== 'image') {
     return (
-      <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm text-center text-gray-400">
-        No astronomy picture available. Run <code>bun run fetch-nasa</code> to fetch data.
+      <div className="bg-surface-container rounded-sm p-6 ghost-border text-center text-outline">
+        No astronomy picture available. Run <code className="text-secondary">bun run fetch-nasa</code> to fetch data.
       </div>
     )
   }
@@ -14,8 +14,8 @@ export default function ApodCard() {
   const imageSrc = apod._localImage ?? apod.url
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-      <div className="aspect-video relative overflow-hidden bg-gray-900">
+    <div className="bg-surface-container rounded-sm ghost-border overflow-hidden glow-primary">
+      <div className="aspect-video relative overflow-hidden bg-surface-container-lowest">
         <img
           src={imageSrc}
           alt={apod.title}
@@ -24,16 +24,16 @@ export default function ApodCard() {
       </div>
       <div className="p-6">
         <div className="flex items-start justify-between gap-4 mb-3">
-          <h3 className="font-semibold text-gray-900 text-lg">{apod.title}</h3>
-          <span className="text-xs text-gray-400 whitespace-nowrap flex-shrink-0">
+          <h3 className="font-semibold text-on-surface text-lg">{apod.title}</h3>
+          <span className="text-xs text-outline whitespace-nowrap flex-shrink-0" style={{ fontFamily: 'var(--font-family-label)' }}>
             {apod.date}
           </span>
         </div>
-        <p className="text-sm text-gray-600 line-clamp-3">{apod.explanation}</p>
+        <p className="text-sm text-on-surface-variant line-clamp-3">{apod.explanation}</p>
         {apod.copyright && (
-          <p className="text-xs text-gray-400 mt-3">&copy; {apod.copyright}</p>
+          <p className="text-xs text-outline mt-3">&copy; {apod.copyright}</p>
         )}
-        <p className="text-xs text-indigo-500 mt-2">
+        <p className="text-xs text-primary mt-2" style={{ fontFamily: 'var(--font-family-label)' }}>
           NASA Astronomy Picture of the Day
         </p>
       </div>

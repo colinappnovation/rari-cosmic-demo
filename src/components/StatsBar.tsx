@@ -18,11 +18,11 @@ export default function StatsBar() {
       {stats.map(stat => (
         <div
           key={stat.label}
-          className="bg-white rounded-xl border border-gray-200 p-5 shadow-sm text-center"
+          className="bg-surface-container rounded-sm p-5 ghost-border text-center glow-primary"
         >
           <div className="text-2xl mb-2">{stat.icon}</div>
-          <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
-          <div className="text-sm text-gray-500">{stat.label}</div>
+          <div className="text-2xl font-bold text-on-surface">{stat.value}</div>
+          <div className="text-sm text-on-surface-variant" style={{ fontFamily: 'var(--font-family-label)' }}>{stat.label}</div>
         </div>
       ))}
     </div>

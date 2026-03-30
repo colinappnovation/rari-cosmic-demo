@@ -7,7 +7,6 @@ export default function VisitorCounter() {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
-    // Simulate loading a visit count
     const stored = Number(localStorage.getItem('cosmic-visits') || '0') + 1
     localStorage.setItem('cosmic-visits', String(stored))
     setCount(stored)
@@ -16,12 +15,12 @@ export default function VisitorCounter() {
 
   return (
     <div
-      className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-50 border border-indigo-200 text-sm transition-opacity duration-500 ${
+      className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass ghost-border text-sm transition-opacity duration-500 ${
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
     >
-      <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
-      <span className="text-indigo-700 font-medium">
+      <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+      <span className="text-primary font-medium" style={{ fontFamily: 'var(--font-family-label)' }}>
         Visit #{count}
       </span>
     </div>

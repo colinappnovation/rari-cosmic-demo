@@ -10,14 +10,18 @@ const navLinks = [
 
 export default function RootLayout({ children }: LayoutProps) {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <nav className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+    <div className="min-h-screen bg-surface relative overflow-hidden">
+      {/* Nebula blur decorations */}
+      <div className="nebula-blur" style={{ width: 600, height: 600, top: -200, left: -200, background: '#be14ee' }} />
+      <div className="nebula-blur" style={{ width: 500, height: 500, bottom: -100, right: -200, background: '#00c3eb' }} />
+
+      <nav className="glass ghost-border sticky top-0 z-50 border-b border-outline-variant/15">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-3">
               <a href="/" className="flex items-center gap-2 no-underline">
                 <span className="text-2xl">🔭</span>
-                <span className="text-xl font-bold text-gray-900">
+                <span className="text-xl font-bold text-on-surface">
                   Cosmic Explorer
                 </span>
               </a>
@@ -28,7 +32,8 @@ export default function RootLayout({ children }: LayoutProps) {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="px-4 py-2 text-sm font-medium text-gray-700 no-underline hover:text-indigo-600 hover:bg-indigo-50 rounded-md transition-colors"
+                    className="px-4 py-2 text-sm font-medium text-on-surface-variant no-underline hover:text-primary hover:bg-surface-container-high rounded-md transition-colors"
+                    style={{ fontFamily: 'var(--font-family-label)' }}
                   >
                     {link.label}
                   </a>
@@ -38,10 +43,10 @@ export default function RootLayout({ children }: LayoutProps) {
           </div>
         </div>
       </nav>
-      <main className="max-w-7xl mx-auto px-6 py-8">{children}</main>
-      <footer className="border-t border-gray-200 bg-white mt-12">
-        <div className="max-w-7xl mx-auto px-6 py-6 text-center text-sm text-gray-400">
-          Built with <a href="https://rari.build" className="text-indigo-500 hover:text-indigo-600 no-underline">rari</a> &mdash; React Server Components on Rust
+      <main className="max-w-7xl mx-auto px-6 py-8 relative z-10">{children}</main>
+      <footer className="border-t border-outline-variant/15 bg-surface-container-low mt-12 relative z-10">
+        <div className="max-w-7xl mx-auto px-6 py-6 text-center text-sm text-outline" style={{ fontFamily: 'var(--font-family-label)' }}>
+          Built with <a href="https://rari.build" className="text-primary hover:text-primary-container no-underline">rari</a> &mdash; React Server Components on Rust
         </div>
       </footer>
     </div>

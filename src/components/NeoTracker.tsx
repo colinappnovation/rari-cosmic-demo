@@ -5,8 +5,8 @@ export default function NeoTracker() {
 
   if (!feed) {
     return (
-      <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm text-center text-gray-400">
-        No asteroid data available. Run <code>bun run fetch-nasa</code> to fetch data.
+      <div className="bg-surface-container rounded-sm p-6 ghost-border text-center text-outline">
+        No asteroid data available. Run <code className="text-secondary">bun run fetch-nasa</code> to fetch data.
       </div>
     )
   }
@@ -21,23 +21,23 @@ export default function NeoTracker() {
   const hazardous = allNeos.filter(n => n.is_potentially_hazardous_asteroid).length
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-      <div className="p-5 border-b border-gray-100">
+    <div className="bg-surface-container rounded-sm ghost-border overflow-hidden glow-primary">
+      <div className="p-5 border-b border-outline-variant/15">
         <div className="flex items-center justify-between">
-          <h3 className="font-semibold text-gray-900">Near-Earth Objects</h3>
-          <div className="flex items-center gap-3 text-sm">
-            <span className="text-gray-500">{feed.element_count} tracked</span>
+          <h3 className="font-semibold text-on-surface">Near-Earth Objects</h3>
+          <div className="flex items-center gap-3 text-sm" style={{ fontFamily: 'var(--font-family-label)' }}>
+            <span className="text-on-surface-variant">{feed.element_count} tracked</span>
             {hazardous > 0 && (
-              <span className="px-2 py-0.5 rounded-full bg-red-50 text-red-600 border border-red-200 text-xs font-medium">
+              <span className="px-2 py-0.5 rounded-full bg-error-container/30 text-error ghost-border text-xs font-medium">
                 {hazardous} hazardous
               </span>
             )}
           </div>
         </div>
-        <p className="text-xs text-gray-400 mt-1">Data from NASA NEO API</p>
+        <p className="text-xs text-outline mt-1" style={{ fontFamily: 'var(--font-family-label)' }}>Data from NASA NEO API</p>
       </div>
 
-      <div className="divide-y divide-gray-50">
+      <div className="divide-y divide-outline-variant/10">
         {display.map(neo => {
           const approach = neo.close_approach_data[0]
           const minDiam = Math.round(neo.estimated_diameter.meters.estimated_diameter_min)
@@ -51,32 +51,32 @@ export default function NeoTracker() {
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center text-sm flex-shrink-0 ${
                   neo.is_potentially_hazardous_asteroid
-                    ? 'bg-red-100 text-red-600'
-                    : 'bg-gray-100 text-gray-500'
+                    ? 'bg-error-container/30 text-error'
+                    : 'bg-surface-container-high text-on-surface-variant'
                 }`}
               >
                 {neo.is_potentially_hazardous_asteroid ? '!' : '*'}
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium text-gray-900 truncate">
+                  <span className="text-sm font-medium text-on-surface truncate">
                     {neo.name}
                   </span>
                   {neo.is_potentially_hazardous_asteroid && (
-                    <span className="text-xs px-1.5 py-0.5 rounded bg-red-50 text-red-600">
+                    <span className="text-xs px-1.5 py-0.5 rounded bg-error-container/30 text-error">
                       PHA
                     </span>
                   )}
                 </div>
-                <div className="text-xs text-gray-400 mt-0.5">
+                <div className="text-xs text-outline mt-0.5" style={{ fontFamily: 'var(--font-family-label)' }}>
                   {minDiam}-{maxDiam}m diameter
                 </div>
               </div>
               <div className="text-right flex-shrink-0">
-                <div className="text-sm text-gray-700">
+                <div className="text-sm text-on-surface-variant">
                   {(distKm / 1_000_000).toFixed(1)}M km
                 </div>
-                <div className="text-xs text-gray-400">
+                <div className="text-xs text-outline" style={{ fontFamily: 'var(--font-family-label)' }}>
                   {distLunar} lunar &middot; {Math.round(speed).toLocaleString()} km/h
                 </div>
               </div>
@@ -85,7 +85,7 @@ export default function NeoTracker() {
         })}
       </div>
 
-      <div className="px-5 py-3 bg-gray-50 text-xs text-gray-400 text-center">
+      <div className="px-5 py-3 bg-surface-container-low text-xs text-outline text-center" style={{ fontFamily: 'var(--font-family-label)' }}>
         Distances are closest approach to Earth &middot; PHA = Potentially Hazardous Asteroid
       </div>
     </div>
