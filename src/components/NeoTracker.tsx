@@ -1,12 +1,12 @@
-import { fetchNeoFeed } from '@/data/nasa'
+import { getNeoFeed } from '@/data/nasa'
 
-export default async function NeoTracker() {
-  const feed = await fetchNeoFeed()
+export default function NeoTracker() {
+  const feed = getNeoFeed()
 
   if (!feed) {
     return (
       <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm text-center text-gray-400">
-        Unable to load asteroid data.
+        No asteroid data available. Run <code>bun run fetch-nasa</code> to fetch data.
       </div>
     )
   }
@@ -24,7 +24,7 @@ export default async function NeoTracker() {
     <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
       <div className="p-5 border-b border-gray-100">
         <div className="flex items-center justify-between">
-          <h3 className="font-semibold text-gray-900">Near-Earth Objects Today</h3>
+          <h3 className="font-semibold text-gray-900">Near-Earth Objects</h3>
           <div className="flex items-center gap-3 text-sm">
             <span className="text-gray-500">{feed.element_count} tracked</span>
             {hazardous > 0 && (
@@ -34,7 +34,7 @@ export default async function NeoTracker() {
             )}
           </div>
         </div>
-        <p className="text-xs text-gray-400 mt-1">Live data from NASA NEO API</p>
+        <p className="text-xs text-gray-400 mt-1">Data from NASA NEO API</p>
       </div>
 
       <div className="divide-y divide-gray-50">

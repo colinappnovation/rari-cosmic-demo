@@ -1,17 +1,16 @@
 import { planets, missions } from '@/data/space'
+import { getNeoFeed } from '@/data/nasa'
 
-export default async function StatsBar() {
-  // Simulate server-side computation
-  await new Promise(resolve => setTimeout(resolve, 50))
-
+export default function StatsBar() {
   const totalMoons = planets.reduce((sum, p) => sum + p.moons, 0)
   const activeMissions = missions.filter(m => m.status === 'active').length
+  const neo = getNeoFeed()
 
   const stats = [
     { label: 'Planets', value: planets.length, icon: '🪐' },
     { label: 'Known Moons', value: totalMoons, icon: '🌙' },
     { label: 'Active Missions', value: activeMissions, icon: '🚀' },
-    { label: 'Years of Exploration', value: new Date().getFullYear() - 1957, icon: '📡' },
+    { label: 'Near-Earth Objects', value: neo?.element_count ?? 0, icon: '☄️' },
   ]
 
   return (

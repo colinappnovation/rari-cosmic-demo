@@ -1,8 +1,19 @@
-const BASE = typeof process !== 'undefined' && process.env.RARI_ORIGIN
-  ? process.env.RARI_ORIGIN
-  : 'http://localhost:3000'
+import { readFileSync } from 'node:fs'
+import { join, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-export interface ApodResponse {
+const CACHE_DIR = join(dirname(fileURLToPath(import.meta.url)), '.cache')
+
+function readCache<T>(filename: string): T | null {
+  try {
+    const raw = readFileSync(join(CACHE_DIR, filename), 'utf-8')
+    return JSON.parse(raw)
+  } catch {
+    return null
+  }
+}
+
+export interface ApodData {
   title: string
   explanation: string
   url: string
@@ -10,6 +21,7 @@ export interface ApodResponse {
   media_type: string
   date: string
   copyright?: string
+  _localImage?: string
 }
 
 export interface NeoObject {
@@ -32,73 +44,22 @@ export interface NeoFeedResponse {
   near_earth_objects: Record<string, NeoObject[]>
 }
 
-export interface NasaImage {
+export interface CachedImage {
   title: string
-  description: string
   nasa_id: string
   date_created: string
-  thumbUrl: string
-  mediumUrl?: string
+  localImage: string | null
 }
 
-export async function fetchApod(): Promise<ApodResponse | null> {
-  try {
-    const res = await fetch(`${BASE}/api/nasa/apod`)
-    if (!res.ok) return null
-    return await res.json()
-  } catch {
-    return null
-  }
+export function getApod(): ApodData | null {
+  return readCache<ApodData>('apod.json')
 }
 
-export async function fetchNeoFeed(): Promise<NeoFeedResponse | null> {
-  try {
-    const res = await fetch(`${BASE}/api/nasa/neo`)
-    if (!res.ok) return null
-    return await res.json()
-  } catch {
-    return null
-  }
+export function getNeoFeed(): NeoFeedResponse | null {
+  return readCache<NeoFeedResponse>('neo.json')
 }
 
-export async function fetchNasaImages(
-  query: string,
-  count = 6,
-): Promise<NasaImage[]> {
-  try {
-    const res = await fetch(
-      `${BASE}/api/nasa/images?q=${encodeURIComponent(query)}&count=${count}`,
-    )
-    if (!res.ok) return []
-    const data = await res.json()
-    const items = data.collection?.items ?? []
-
-    return items
-      .filter((item: any) => item.links?.length > 0 && item.data?.length > 0)
-      .map((item: any) => {
-        const meta = item.data[0]
-        const thumb = item.links.find((l: any) => l.rel === 'preview')
-        const medium = item.links.find(
-          (l: any) => l.rel === 'alternate' && l.width && l.width >= 640 && l.width <= 1280,
-        )
-        return {
-          title: meta.title,
-          description: meta.description ?? '',
-          nasa_id: meta.nasa_id,
-          date_created: meta.date_created,
-          thumbUrl: thumb?.href ?? item.links[0].href,
-          mediumUrl: medium?.href,
-        }
-      })
-  } catch {
-    return []
-  }
-}
-
-/**
- * Returns a proxied image URL that goes through our API route,
- * avoiding COEP issues with external NASA image servers.
- */
-export function proxyImageUrl(originalUrl: string): string {
-  return `/api/nasa/image-proxy?url=${encodeURIComponent(originalUrl)}`
+export function getPlanetImages(planetId: string): CachedImage[] {
+  const all = readCache<Record<string, CachedImage[]>>('planet-images.json')
+  return all?.[planetId] ?? []
 }

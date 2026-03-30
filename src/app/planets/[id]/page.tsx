@@ -1,5 +1,4 @@
 import type { PageProps, Metadata } from 'rari'
-import { Suspense } from 'react'
 import { getPlanet, planets } from '@/data/space'
 import NasaImageGallery from '@/components/NasaImageGallery'
 
@@ -82,20 +81,10 @@ export default async function PlanetDetailPage({ params }: PageProps) {
         </div>
       </div>
 
-      <Suspense
-        fallback={
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="aspect-square rounded-lg bg-gray-100 animate-pulse" />
-            ))}
-          </div>
-        }
-      >
-        <NasaImageGallery
-          query={planet.nasaQuery}
-          title={`NASA Images of ${planet.name}`}
-        />
-      </Suspense>
+      <NasaImageGallery
+        planetId={planet.id}
+        title={`NASA Images of ${planet.name}`}
+      />
 
       <div className="flex justify-between">
         {prev ? (

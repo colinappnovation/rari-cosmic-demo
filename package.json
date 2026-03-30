@@ -8,6 +8,8 @@
     "node": ">=22.12.0"
   },
   "scripts": {
+    "fetch-nasa": "bun scripts/fetch-nasa.ts",
+    "prebuild": "bun scripts/fetch-nasa.ts",
     "build": "rari build",
     "dev": "rari dev",
     "start": "rari start",

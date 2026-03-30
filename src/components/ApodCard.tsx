@@ -1,21 +1,23 @@
-import { fetchApod, proxyImageUrl } from '@/data/nasa'
+import { getApod } from '@/data/nasa'
 
-export default async function ApodCard() {
-  const apod = await fetchApod()
+export default function ApodCard() {
+  const apod = getApod()
 
   if (!apod || apod.media_type !== 'image') {
     return (
       <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm text-center text-gray-400">
-        Unable to load today's astronomy picture.
+        No astronomy picture available. Run <code>bun run fetch-nasa</code> to fetch data.
       </div>
     )
   }
+
+  const imageSrc = apod._localImage ?? apod.url
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
       <div className="aspect-video relative overflow-hidden bg-gray-900">
         <img
-          src={proxyImageUrl(apod.url)}
+          src={imageSrc}
           alt={apod.title}
           className="w-full h-full object-cover"
         />
