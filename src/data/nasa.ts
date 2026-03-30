@@ -1,4 +1,6 @@
-const API_KEY = 'DEMO_KEY'
+const BASE = typeof process !== 'undefined' && process.env.RARI_ORIGIN
+  ? process.env.RARI_ORIGIN
+  : 'http://localhost:3000'
 
 export interface ApodResponse {
   title: string
@@ -41,9 +43,7 @@ export interface NasaImage {
 
 export async function fetchApod(): Promise<ApodResponse | null> {
   try {
-    const res = await fetch(
-      `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`,
-    )
+    const res = await fetch(`${BASE}/api/nasa/apod`)
     if (!res.ok) return null
     return await res.json()
   } catch {
@@ -53,10 +53,7 @@ export async function fetchApod(): Promise<ApodResponse | null> {
 
 export async function fetchNeoFeed(): Promise<NeoFeedResponse | null> {
   try {
-    const today = new Date().toISOString().split('T')[0]
-    const res = await fetch(
-      `https://api.nasa.gov/neo/rest/v1/feed?start_date=${today}&end_date=${today}&api_key=${API_KEY}`,
-    )
+    const res = await fetch(`${BASE}/api/nasa/neo`)
     if (!res.ok) return null
     return await res.json()
   } catch {
@@ -70,7 +67,7 @@ export async function fetchNasaImages(
 ): Promise<NasaImage[]> {
   try {
     const res = await fetch(
-      `https://images-api.nasa.gov/search?q=${encodeURIComponent(query)}&media_type=image&page_size=${count}`,
+      `${BASE}/api/nasa/images?q=${encodeURIComponent(query)}&count=${count}`,
     )
     if (!res.ok) return []
     const data = await res.json()
@@ -96,4 +93,12 @@ export async function fetchNasaImages(
   } catch {
     return []
   }
+}
+
+/**
+ * Returns a proxied image URL that goes through our API route,
+ * avoiding COEP issues with external NASA image servers.
+ */
+export function proxyImageUrl(originalUrl: string): string {
+  return `/api/nasa/image-proxy?url=${encodeURIComponent(originalUrl)}`
 }

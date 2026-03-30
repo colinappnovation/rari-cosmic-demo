@@ -1,5 +1,4 @@
-import { fetchApod } from '@/data/nasa'
-import { toDataUrl } from '@/data/image-proxy'
+import { fetchApod, proxyImageUrl } from '@/data/nasa'
 
 export default async function ApodCard() {
   const apod = await fetchApod()
@@ -12,13 +11,11 @@ export default async function ApodCard() {
     )
   }
 
-  const imageSrc = await toDataUrl(apod.url) ?? apod.url
-
   return (
     <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
       <div className="aspect-video relative overflow-hidden bg-gray-900">
         <img
-          src={imageSrc}
+          src={proxyImageUrl(apod.url)}
           alt={apod.title}
           className="w-full h-full object-cover"
         />

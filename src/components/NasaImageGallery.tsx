@@ -1,5 +1,4 @@
-import { fetchNasaImages } from '@/data/nasa'
-import { toDataUrl } from '@/data/image-proxy'
+import { fetchNasaImages, proxyImageUrl } from '@/data/nasa'
 
 interface Props {
   query: string
@@ -13,26 +12,19 @@ export default async function NasaImageGallery({ query, title }: Props) {
     return null
   }
 
-  const withDataUrls = await Promise.all(
-    images.map(async img => ({
-      ...img,
-      src: await toDataUrl(img.thumbUrl) ?? img.thumbUrl,
-    })),
-  )
-
   return (
     <div>
       {title && (
         <h2 className="text-lg font-semibold text-gray-900 mb-3">{title}</h2>
       )}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-        {withDataUrls.map(img => (
+        {images.map(img => (
           <div
             key={img.nasa_id}
             className="group relative rounded-lg overflow-hidden bg-gray-100 aspect-square"
           >
             <img
-              src={img.src}
+              src={proxyImageUrl(img.thumbUrl)}
               alt={img.title}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             />
