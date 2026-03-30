@@ -1,17 +1,6 @@
-import { readFileSync } from 'node:fs'
-import { join, dirname } from 'node:path'
-import { fileURLToPath } from 'node:url'
-
-const CACHE_DIR = join(dirname(fileURLToPath(import.meta.url)), '.cache')
-
-function readCache<T>(filename: string): T | null {
-  try {
-    const raw = readFileSync(join(CACHE_DIR, filename), 'utf-8')
-    return JSON.parse(raw)
-  } catch {
-    return null
-  }
-}
+import apodData from './generated/apod'
+import neoData from './generated/neo'
+import planetImagesData from './generated/planet-images'
 
 export interface ApodData {
   title: string
@@ -52,14 +41,14 @@ export interface CachedImage {
 }
 
 export function getApod(): ApodData | null {
-  return readCache<ApodData>('apod.json')
+  return apodData as any
 }
 
 export function getNeoFeed(): NeoFeedResponse | null {
-  return readCache<NeoFeedResponse>('neo.json')
+  return neoData as any
 }
 
 export function getPlanetImages(planetId: string): CachedImage[] {
-  const all = readCache<Record<string, CachedImage[]>>('planet-images.json')
-  return all?.[planetId] ?? []
+  if (!planetImagesData) return []
+  return (planetImagesData as any)[planetId] ?? []
 }
