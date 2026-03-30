@@ -23,7 +23,7 @@ export default function NasaImageGallery({ planetId, title }: Props) {
           return (
             <div
               key={img.nasa_id}
-              className="group relative rounded-sm overflow-hidden bg-surface-container-lowest aspect-square"
+              className="group relative rounded-xl overflow-hidden aspect-square"
             >
               <img
                 src={img.localImage}

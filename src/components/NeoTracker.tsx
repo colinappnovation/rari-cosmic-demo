@@ -5,7 +5,7 @@ export default function NeoTracker() {
 
   if (!feed) {
     return (
-      <div className="bg-surface-container rounded-sm p-6 ghost-border text-center text-outline">
+      <div className="glass-panel rounded-xl p-6 text-center text-outline">
         No asteroid data available. Run <code className="text-secondary">bun run fetch-nasa</code> to fetch data.
       </div>
     )
@@ -21,14 +21,14 @@ export default function NeoTracker() {
   const hazardous = allNeos.filter(n => n.is_potentially_hazardous_asteroid).length
 
   return (
-    <div className="bg-surface-container rounded-sm ghost-border overflow-hidden glow-primary">
-      <div className="p-5 border-b border-outline-variant/15">
+    <div className="glass-panel rounded-xl overflow-hidden glow-primary">
+      <div className="p-5 border-b border-white/5">
         <div className="flex items-center justify-between">
           <h3 className="font-semibold text-on-surface">Near-Earth Objects</h3>
           <div className="flex items-center gap-3 text-sm" style={{ fontFamily: 'var(--font-family-label)' }}>
             <span className="text-on-surface-variant">{feed.element_count} tracked</span>
             {hazardous > 0 && (
-              <span className="px-2 py-0.5 rounded-full bg-error-container/30 text-error ghost-border text-xs font-medium">
+              <span className="px-2 py-0.5 rounded-full bg-error/15 text-error text-xs font-medium">
                 {hazardous} hazardous
               </span>
             )}
@@ -37,7 +37,7 @@ export default function NeoTracker() {
         <p className="text-xs text-outline mt-1" style={{ fontFamily: 'var(--font-family-label)' }}>Data from NASA NEO API</p>
       </div>
 
-      <div className="divide-y divide-outline-variant/10">
+      <div className="divide-y divide-white/5">
         {display.map(neo => {
           const approach = neo.close_approach_data[0]
           const minDiam = Math.round(neo.estimated_diameter.meters.estimated_diameter_min)
@@ -51,8 +51,8 @@ export default function NeoTracker() {
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center text-sm flex-shrink-0 ${
                   neo.is_potentially_hazardous_asteroid
-                    ? 'bg-error-container/30 text-error'
-                    : 'bg-surface-container-high text-on-surface-variant'
+                    ? 'bg-error/15 text-error'
+                    : 'bg-white/5 text-on-surface-variant'
                 }`}
               >
                 {neo.is_potentially_hazardous_asteroid ? '!' : '*'}
@@ -63,7 +63,7 @@ export default function NeoTracker() {
                     {neo.name}
                   </span>
                   {neo.is_potentially_hazardous_asteroid && (
-                    <span className="text-xs px-1.5 py-0.5 rounded bg-error-container/30 text-error">
+                    <span className="text-xs px-1.5 py-0.5 rounded bg-error/15 text-error">
                       PHA
                     </span>
                   )}
@@ -85,7 +85,7 @@ export default function NeoTracker() {
         })}
       </div>
 
-      <div className="px-5 py-3 bg-surface-container-low text-xs text-outline text-center" style={{ fontFamily: 'var(--font-family-label)' }}>
+      <div className="px-5 py-3 bg-white/3 text-xs text-outline text-center" style={{ fontFamily: 'var(--font-family-label)' }}>
         Distances are closest approach to Earth &middot; PHA = Potentially Hazardous Asteroid
       </div>
     </div>

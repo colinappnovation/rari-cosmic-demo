@@ -15,7 +15,7 @@ export default function VisitorCounter() {
 
   return (
     <div
-      className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass ghost-border text-sm transition-opacity duration-500 ${
+      className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-light text-sm transition-opacity duration-500 ${
         isVisible ? 'opacity-100' : 'opacity-0'
       }`}
     >

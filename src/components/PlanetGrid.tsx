@@ -37,14 +37,14 @@ export default function PlanetGrid({ planets }: { planets: Planet[] }) {
             href={`/planets/${planet.id}`}
             className="group block no-underline"
           >
-            <div className="bg-surface-container-low rounded-sm p-6 ghost-border hover:glow-primary transition-all">
+            <div className="glass-panel rounded-xl p-6 hover-glow transition-all">
               <div className="flex items-start justify-between mb-3">
                 <div
                   className={`w-12 h-12 rounded-full bg-gradient-to-br ${planet.color} flex items-center justify-center text-white text-xl`}
                 >
                   {planet.emoji}
                 </div>
-                <span className="text-xs font-medium px-2 py-1 rounded-full bg-surface-container-high text-on-surface-variant"
+                <span className="text-xs font-medium px-2 py-1 rounded-full bg-white/5 text-on-surface-variant"
                   style={{ fontFamily: 'var(--font-family-label)' }}
                 >
                   {planet.type}

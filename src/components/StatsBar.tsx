@@ -18,7 +18,7 @@ export default function StatsBar() {
       {stats.map(stat => (
         <div
           key={stat.label}
-          className="bg-surface-container rounded-sm p-5 ghost-border text-center glow-primary"
+          className="glass-panel rounded-2xl p-5 text-center glow-primary"
         >
           <div className="text-2xl mb-2">{stat.icon}</div>
           <div className="text-2xl font-bold text-on-surface">{stat.value}</div>

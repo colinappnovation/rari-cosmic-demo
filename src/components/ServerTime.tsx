@@ -4,14 +4,14 @@ export default async function ServerTime() {
   await new Promise(resolve => setTimeout(resolve, 100))
 
   return (
-    <div className="rounded-sm p-8 ghost-border" style={{ background: 'linear-gradient(135deg, rgba(0, 195, 235, 0.1), rgba(190, 20, 238, 0.1))' }}>
+    <div className="glass-panel rounded-xl p-8">
       <h2 className="text-2xl font-semibold mb-4 text-on-surface">
         Server Component
       </h2>
       <p className="text-on-surface-variant mb-4">
         This component renders on the server with rari's high-performance Rust runtime.
       </p>
-      <div className="bg-surface-container-lowest rounded-sm p-4 border-b-2 border-secondary">
+      <div className="glass-light rounded-lg p-4 border-b-2 border-secondary">
         <p className="text-sm text-outline mb-1" style={{ fontFamily: 'var(--font-family-label)' }}>Server timestamp:</p>
         <p className="font-mono text-lg text-on-surface">{timestamp}</p>
       </div>

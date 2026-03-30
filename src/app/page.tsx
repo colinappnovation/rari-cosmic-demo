@@ -16,7 +16,7 @@ function FeaturedPlanets() {
           href={`/planets/${planet.id}`}
           className="group block no-underline"
         >
-          <div className="relative overflow-hidden rounded-sm bg-surface-container-low p-5 ghost-border hover:glow-primary transition-all">
+          <div className="glass-panel rounded-xl p-5 hover-glow transition-all">
             <div
               className={`w-16 h-16 rounded-full bg-gradient-to-br ${planet.color} flex items-center justify-center text-2xl mb-3 group-hover:scale-110 transition-transform`}
             >
@@ -41,16 +41,16 @@ function LatestMissions() {
       {latest.map(mission => (
         <div
           key={mission.id}
-          className="flex items-center gap-4 bg-surface-container-low rounded-sm p-4 ghost-border"
+          className="flex items-center gap-4 glass-light rounded-xl p-4"
         >
-          <div className="w-10 h-10 rounded-full bg-secondary-container/30 flex items-center justify-center text-secondary font-bold text-sm flex-shrink-0">
+          <div className="w-10 h-10 rounded-full bg-secondary/15 flex items-center justify-center text-secondary font-bold text-sm flex-shrink-0">
             {mission.year.toString().slice(-2)}
           </div>
           <div className="flex-1 min-w-0">
             <h4 className="font-medium text-on-surface text-sm">{mission.name}</h4>
             <p className="text-xs text-outline truncate">{mission.target}</p>
           </div>
-          <span className="text-xs font-medium px-2 py-1 rounded-full bg-secondary-container/20 text-secondary ghost-border flex-shrink-0"
+          <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-secondary/10 text-secondary"
             style={{ fontFamily: 'var(--font-family-label)' }}
           >
             active
@@ -71,10 +71,10 @@ function LoadingSkeleton({ rows = 4 }: { rows?: number }) {
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
       {Array.from({ length: rows }).map((_, i) => (
-        <div key={i} className="bg-surface-container rounded-sm p-5 ghost-border text-center animate-pulse">
-          <div className="h-8 w-8 bg-surface-container-high rounded mx-auto mb-2" />
-          <div className="h-6 w-12 bg-surface-container-high rounded mx-auto mb-1" />
-          <div className="h-4 w-20 bg-surface-container rounded mx-auto" />
+        <div key={i} className="glass-panel rounded-xl p-5 text-center animate-pulse">
+          <div className="h-8 w-8 bg-white/10 rounded mx-auto mb-2" />
+          <div className="h-6 w-12 bg-white/10 rounded mx-auto mb-1" />
+          <div className="h-4 w-20 bg-white/5 rounded mx-auto" />
         </div>
       ))}
     </div>
@@ -83,12 +83,12 @@ function LoadingSkeleton({ rows = 4 }: { rows?: number }) {
 
 function CardSkeleton() {
   return (
-    <div className="bg-surface-container rounded-sm ghost-border overflow-hidden animate-pulse">
-      <div className="aspect-video bg-surface-container-high" />
+    <div className="glass-panel rounded-xl overflow-hidden animate-pulse">
+      <div className="aspect-video bg-white/5" />
       <div className="p-6 space-y-3">
-        <div className="h-5 w-3/4 bg-surface-container-high rounded" />
-        <div className="h-4 w-full bg-surface-container rounded" />
-        <div className="h-4 w-2/3 bg-surface-container rounded" />
+        <div className="h-5 w-3/4 bg-white/10 rounded" />
+        <div className="h-4 w-full bg-white/5 rounded" />
+        <div className="h-4 w-2/3 bg-white/5 rounded" />
       </div>
     </div>
   )
@@ -96,18 +96,18 @@ function CardSkeleton() {
 
 function ListSkeleton() {
   return (
-    <div className="bg-surface-container rounded-sm ghost-border overflow-hidden animate-pulse">
-      <div className="p-5 border-b border-outline-variant/15">
-        <div className="h-5 w-48 bg-surface-container-high rounded" />
+    <div className="glass-panel rounded-xl overflow-hidden animate-pulse">
+      <div className="p-5 border-b border-white/5">
+        <div className="h-5 w-48 bg-white/10 rounded" />
       </div>
       {Array.from({ length: 5 }).map((_, i) => (
         <div key={i} className="px-5 py-3 flex items-center gap-4">
-          <div className="w-8 h-8 rounded-full bg-surface-container-high" />
+          <div className="w-8 h-8 rounded-full bg-white/10" />
           <div className="flex-1 space-y-1.5">
-            <div className="h-4 w-32 bg-surface-container-high rounded" />
-            <div className="h-3 w-20 bg-surface-container rounded" />
+            <div className="h-4 w-32 bg-white/10 rounded" />
+            <div className="h-3 w-20 bg-white/5 rounded" />
           </div>
-          <div className="h-4 w-16 bg-surface-container rounded" />
+          <div className="h-4 w-16 bg-white/5 rounded" />
         </div>
       ))}
     </div>
@@ -117,8 +117,8 @@ function ListSkeleton() {
 export default function HomePage(_params: PageProps) {
   return (
     <div className="space-y-10">
-      <div>
-        <h1 className="text-4xl font-bold text-on-surface mb-2">
+      <div className="text-center pt-4">
+        <h1 className="text-5xl font-bold text-on-surface mb-3">
           Cosmic Explorer
         </h1>
         <p className="text-lg text-on-surface-variant">
@@ -170,21 +170,21 @@ export default function HomePage(_params: PageProps) {
         <LatestMissions />
       </section>
 
-      <section className="rounded-sm p-8 ghost-border" style={{ background: 'linear-gradient(135deg, rgba(190, 20, 238, 0.1), rgba(0, 195, 235, 0.1))' }}>
+      <section className="glass-panel rounded-xl p-8">
         <h2 className="text-xl font-semibold text-on-surface mb-2">How This Works</h2>
         <p className="text-on-surface-variant mb-4">
           This demo fetches <strong className="text-on-surface">live data from 3 NASA APIs</strong>, all rendered as async Server Components on rari's Rust runtime:
         </p>
         <div className="grid sm:grid-cols-3 gap-4 text-sm">
-          <div className="glass rounded-sm p-4 ghost-border">
+          <div className="glass-light rounded-lg p-4">
             <strong className="text-on-surface">APOD API</strong>
             <p className="text-on-surface-variant mt-1">Today's astronomy picture fetched server-side with async/await.</p>
           </div>
-          <div className="glass rounded-sm p-4 ghost-border">
+          <div className="glass-light rounded-lg p-4">
             <strong className="text-on-surface">NEO Feed API</strong>
             <p className="text-on-surface-variant mt-1">Real-time near-Earth asteroid data streamed via Suspense.</p>
           </div>
-          <div className="glass rounded-sm p-4 ghost-border">
+          <div className="glass-light rounded-lg p-4">
             <strong className="text-on-surface">Image Library API</strong>
             <p className="text-on-surface-variant mt-1">NASA photos on each planet detail page, fetched per request.</p>
           </div>

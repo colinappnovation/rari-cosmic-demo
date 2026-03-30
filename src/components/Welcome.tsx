@@ -2,7 +2,7 @@ import Rari from './Rari'
 
 export default function Welcome() {
   return (
-    <div className="bg-surface-container rounded-sm p-8 ghost-border">
+    <div className="glass-panel rounded-xl p-8">
       <div className="flex items-center gap-4 mb-6">
         <Rari className="w-32 h-auto text-on-surface" />
       </div>

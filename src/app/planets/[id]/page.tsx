@@ -35,7 +35,7 @@ export default async function PlanetDetailPage({ params }: PageProps) {
         &larr; All planets
       </a>
 
-      <div className="bg-surface-container rounded-sm ghost-border overflow-hidden">
+      <div className="glass-panel rounded-xl overflow-hidden">
         <div className={`h-32 bg-gradient-to-r ${planet.color} flex items-center justify-center`}>
           <span className="text-6xl drop-shadow-lg">{planet.emoji}</span>
         </div>
@@ -44,7 +44,7 @@ export default async function PlanetDetailPage({ params }: PageProps) {
           <div className="flex items-start justify-between mb-4">
             <div>
               <h1 className="text-3xl font-bold text-on-surface">{planet.name}</h1>
-              <span className="text-sm font-medium px-2 py-1 rounded-full bg-surface-container-high text-on-surface-variant mt-2 inline-block"
+              <span className="text-sm font-medium px-2.5 py-1 rounded-full bg-white/5 text-on-surface-variant mt-2 inline-block"
                 style={{ fontFamily: 'var(--font-family-label)' }}
               >
                 {planet.type}
@@ -55,15 +55,15 @@ export default async function PlanetDetailPage({ params }: PageProps) {
           <p className="text-on-surface-variant text-lg mb-6">{planet.description}</p>
 
           <div className="grid grid-cols-3 gap-4 mb-8">
-            <div className="bg-surface-container-low rounded-sm p-4 text-center ghost-border">
+            <div className="glass-light rounded-xl p-4 text-center">
               <div className="text-sm text-outline mb-1" style={{ fontFamily: 'var(--font-family-label)' }}>Diameter</div>
               <div className="font-semibold text-on-surface">{planet.diameter}</div>
             </div>
-            <div className="bg-surface-container-low rounded-sm p-4 text-center ghost-border">
+            <div className="glass-light rounded-xl p-4 text-center">
               <div className="text-sm text-outline mb-1" style={{ fontFamily: 'var(--font-family-label)' }}>Distance from Sun</div>
               <div className="font-semibold text-on-surface">{planet.distance}</div>
             </div>
-            <div className="bg-surface-container-low rounded-sm p-4 text-center ghost-border">
+            <div className="glass-light rounded-xl p-4 text-center">
               <div className="text-sm text-outline mb-1" style={{ fontFamily: 'var(--font-family-label)' }}>Moons</div>
               <div className="font-semibold text-on-surface">{planet.moons}</div>
             </div>
@@ -107,7 +107,7 @@ export default async function PlanetDetailPage({ params }: PageProps) {
         ) : <div />}
       </div>
 
-      <div className="rounded-sm p-6 ghost-border text-sm text-on-surface-variant" style={{ background: 'linear-gradient(135deg, rgba(190, 20, 238, 0.08), rgba(0, 195, 235, 0.08))' }}>
+      <div className="glass-panel rounded-xl p-6 text-sm text-on-surface-variant">
         <strong className="text-on-surface">Server-rendered:</strong> This page was rendered on the server using rari's Rust runtime.
         Planet data and NASA images were fetched asynchronously via async Server Components with a dynamic route parameter.
       </div>

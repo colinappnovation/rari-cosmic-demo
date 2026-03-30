@@ -10,7 +10,7 @@ export default function AboutPage(_params: PageProps) {
         </p>
       </div>
 
-      <div className="bg-surface-container rounded-sm p-8 ghost-border space-y-6">
+      <div className="glass-panel rounded-xl p-8 space-y-6">
         <div>
           <h2 className="text-xl font-semibold text-on-surface mb-3">What is rari?</h2>
           <p className="text-on-surface-variant">
@@ -23,42 +23,42 @@ export default function AboutPage(_params: PageProps) {
         <div>
           <h2 className="text-xl font-semibold text-on-surface mb-3">Features Demonstrated</h2>
           <div className="grid sm:grid-cols-2 gap-4">
-            <div className="bg-surface-container-low rounded-sm p-4 ghost-border">
+            <div className="glass-light rounded-lg p-4">
               <h3 className="font-medium text-on-surface mb-1">Server Components</h3>
               <p className="text-sm text-on-surface-variant">
                 The dashboard stats, planet detail pages, and mission timeline are all server components
                 that run async code on the Rust runtime.
               </p>
             </div>
-            <div className="bg-surface-container-low rounded-sm p-4 ghost-border">
+            <div className="glass-light rounded-lg p-4">
               <h3 className="font-medium text-on-surface mb-1">Client Components</h3>
               <p className="text-sm text-on-surface-variant">
                 The planet search/filter, visitor counter, and interactive UI elements use the
                 'use client' directive for browser interactivity.
               </p>
             </div>
-            <div className="bg-surface-container-low rounded-sm p-4 ghost-border">
+            <div className="glass-light rounded-lg p-4">
               <h3 className="font-medium text-on-surface mb-1">File-Based Routing</h3>
               <p className="text-sm text-on-surface-variant">
                 Routes are defined by the file structure under src/app/. Dynamic segments like
                 /planets/[id] map to folder names with brackets.
               </p>
             </div>
-            <div className="bg-surface-container-low rounded-sm p-4 ghost-border">
+            <div className="glass-light rounded-lg p-4">
               <h3 className="font-medium text-on-surface mb-1">Suspense &amp; Streaming</h3>
               <p className="text-sm text-on-surface-variant">
                 The dashboard uses React Suspense boundaries so server components can stream in
                 progressively with loading fallbacks.
               </p>
             </div>
-            <div className="bg-surface-container-low rounded-sm p-4 ghost-border">
+            <div className="glass-light rounded-lg p-4">
               <h3 className="font-medium text-on-surface mb-1">Nested Layouts</h3>
               <p className="text-sm text-on-surface-variant">
                 The root layout wraps all pages with a shared nav and footer. Layouts persist across
                 navigations without remounting.
               </p>
             </div>
-            <div className="bg-surface-container-low rounded-sm p-4 ghost-border">
+            <div className="glass-light rounded-lg p-4">
               <h3 className="font-medium text-on-surface mb-1">Tailwind CSS 4</h3>
               <p className="text-sm text-on-surface-variant">
                 All styling uses Tailwind CSS v4 with the Vite plugin for instant compilation

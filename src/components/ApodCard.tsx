@@ -5,7 +5,7 @@ export default function ApodCard() {
 
   if (!apod || apod.media_type !== 'image') {
     return (
-      <div className="bg-surface-container rounded-sm p-6 ghost-border text-center text-outline">
+      <div className="glass-panel rounded-xl p-6 text-center text-outline">
         No astronomy picture available. Run <code className="text-secondary">bun run fetch-nasa</code> to fetch data.
       </div>
     )
@@ -14,8 +14,8 @@ export default function ApodCard() {
   const imageSrc = apod._localImage ?? apod.url
 
   return (
-    <div className="bg-surface-container rounded-sm ghost-border overflow-hidden glow-primary">
-      <div className="aspect-video relative overflow-hidden bg-surface-container-lowest">
+    <div className="glass-panel rounded-xl overflow-hidden glow-primary">
+      <div className="aspect-video relative overflow-hidden">
         <img
           src={imageSrc}
           alt={apod.title}
