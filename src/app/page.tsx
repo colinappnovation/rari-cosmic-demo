@@ -47,7 +47,7 @@ function LatestMissions() {
             {mission.year.toString().slice(-2)}
           </div>
           <div className="flex-1 min-w-0">
-            <h4 className="font-medium text-on-surface text-sm">{mission.name}</h4>
+            <h3 className="font-medium text-on-surface text-sm">{mission.name}</h3>
             <p className="text-xs text-outline truncate">{mission.target}</p>
           </div>
           <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-secondary/10 text-secondary"
